@@ -1,0 +1,9 @@
+{
+	"name": "saury",
+	"version": "0.0.1",
+	"dependencies": {
+		"express": "~4.8.8",
+		"mongoose": "~3.8.15",
+		"socket.io": "~1.1.0"
+	}
+}
