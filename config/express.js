@@ -17,7 +17,7 @@ module.exports = function(){
 	app.set('views', './app/views');
 	app.engine('.html', require('ejs').renderFile);
 	app.use(express.static('./public'));
-    
+
 	/*Set Routers*/
 	require('../app/wechat/router')(app);
 

@@ -1,5 +1,6 @@
 var crypto = require('crypto');
 var xml2js = require('xml2js');
+var handlers = require('./handlers.js');
 
 exports.authen = function(req, res){
 	var signature = req.query.signature;

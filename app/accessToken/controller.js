@@ -9,17 +9,23 @@ var url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=' + grantType + '&
 
 var fetchToken = function(){
 	https.get(url, function(res){
-		
+		var body = '';
+
 		res.setEncoding('utf8');
 		res.on('data', function(chunck){
+			body += chunck;
+		});
+
+		res.on('end', function(){
 			var token = new Token();
 			var time = new Date();
 			token.time = time.getTime();
-			token.token = chunck.access_token;
-			token.expire = chunck.expires_in + token.time;
-			console.log(chunck);
+			body = JSON.parse(body);
+			token.token = body.access_token;
+			token.expire = Number(body.expires_in) + Number(token.time);
+			
 			token.save(function(err){
-				console.log(err);
+				if(!err) console.log(err);
 			});
 		});
 
