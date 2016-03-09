@@ -25,7 +25,7 @@ var fetchToken = function(){
 			token.expire = Number(body.expires_in) + Number(token.time);
 			
 			token.save(function(err){
-				if(!err) console.log(err);
+				if(err) console.log(err);
 			});
 		});
 
@@ -33,10 +33,7 @@ var fetchToken = function(){
 };
 
 exports.getToken = function(cb){
-	Token.findOne().exec(function(err, doc){
-		if(err) console.log(err);
-		cb(doc);
-	});
+	Token.findOne().sort('-time').exec(cb);
 };
 
 exports.fetchTokenInterval = function(seconds, cb){

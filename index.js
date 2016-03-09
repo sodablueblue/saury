@@ -3,6 +3,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var token = require('./app/accessToken/controller.js');
 var mongoose = require('./config/mongo.js');
 var express = require('./config/express');
+var uploadPic = require('./app/uploadPic/controller.js');
 
 var db = mongoose();
 var app = express();
@@ -14,3 +15,4 @@ console.log('Crayfish on http://localhost:' + port);
 
 // 7000 seconds get access token once;
 token.fetchTokenInterval(7000, console.log);
+uploadPic('a', console.log);
